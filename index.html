@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>San — README</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #f0f4f9;
+    --surface:   #ffffff;
+    --navy:      #1b2a4a;
+    --blue-mid:  #4a78b8;
+    --blue-light:#a8c4e0;
+    --blue-pale: #d6e8f5;
+    --accent:    #2e6bc6;
+    --text:      #1b2a4a;
+    --muted:     #6b82a0;
+    --border:    #dce8f3;
+    --code-bg:   #e8f0fa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  header {
+    background: linear-gradient(160deg, #0d1f3c 0%, #1b3a6e 55%, #2e5fa3 100%);
+    padding: 72px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 110%, rgba(74,120,184,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 10%, rgba(168,196,224,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 10px;
+    margin: 0 auto 28px;
+    backdrop-filter: blur(4px);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+  header h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  header h1 span { color: var(--blue-light); }
+
+  .tagline {
+    margin-top: 14px;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(200,220,240,0.85);
+    letter-spacing: 0.02em;
+  }
+
+  .badges {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: #c8daf0;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── MAIN ─────────────────────────────────────────── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 28px 80px;
+  }
+
+  section { margin-bottom: 56px; }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h2::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 22px;
+    background: linear-gradient(180deg, var(--accent), var(--blue-light));
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 24px 0 8px;
+  }
+
+  p { color: #334e6e; margin-bottom: 12px; }
+
+  /* ── CODE BLOCKS ──────────────────────────────────── */
+  pre {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 24px 26px;
+    overflow-x: auto;
+    margin: 16px 0;
+    border: 1px solid rgba(74,120,184,0.3);
+    position: relative;
+  }
+
+  pre::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: 10px; right: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--blue-light);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #c8daf0;
+  }
+
+  /* syntax colors */
+  .kw  { color: #79b8ff; }
+  .fn  { color: #b3d9ff; font-weight: 500; }
+  .str { color: #9ecbff; }
+  .num { color: #79dcaa; }
+  .cm  { color: #5d7a9e; font-style: italic; }
+  .ty  { color: #ffa07a; }
+  .op  { color: #c0d4f0; }
+
+  /* inline code */
+  p code, li code {
+    background: var(--code-bg);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.85em;
+  }
+
+  /* ── FEATURE GRID ─────────────────────────────────── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+    transition: box-shadow .2s, transform .2s;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 8px 28px rgba(46,107,198,0.12);
+    transform: translateY(-3px);
+  }
+
+  .feature-card .icon {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-card h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ── TABLE ────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-top: 12px;
+  }
+
+  th {
+    background: var(--code-bg);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: #334e6e;
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f5f9ff; }
+
+  td code { background: var(--code-bg); }
+
+  /* ── ORDERED LIST ─────────────────────────────────── */
+  ol, ul {
+    padding-left: 22px;
+    color: #334e6e;
+  }
+
+  li { margin-bottom: 6px; }
+
+  /* ── CALLOUT ──────────────────────────────────────── */
+  .callout {
+    background: linear-gradient(135deg, #e8f0fa, #d6e8f5);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    color: var(--navy);
+  }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 36px 20px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<header>
+  <div class="hero-logo">
+    <img src="/mnt/user-data/uploads/file_00000000b2ec71fa8336dd13084135ff.png" alt="San logo" />
+  </div>
+  <h1><span>&lt;</span> San <span>&gt;</span></h1>
+  <p class="tagline">A clean, expressive, tree-walking interpreted language — built to peak.</p>
+  <div class="badges">
+    <span class="badge">🐍 Written in Python</span>
+    <span class="badge">🌲 Tree-Walking Interpreter</span>
+    <span class="badge">✨ v0.1.0 — alpha</span>
+    <span class="badge">📄 MIT License</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── ABOUT ─────────────────────────────────────── -->
+  <section>
+    <h2>What is San?</h2>
+    <p>
+      <strong>San</strong> is a dynamically-typed, expression-oriented programming language with a hand-written
+      recursive-descent parser and tree-walking evaluator. It is designed to be readable, minimal, and easy to
+      embed or extend — without sacrificing real programming power.
+    </p>
+    <p>
+      San was built from scratch in Python as an exploration of language design and interpreter construction —
+      from lexing raw source text all the way to evaluating an abstract syntax tree at runtime.
+    </p>
+    <div class="callout">
+      💡 San is the product of <strong>Project-Arc</strong> — a personal journey to understand how programming
+      languages actually work, built on an Android tablet using Pydroid, one commit at a time.
+    </div>
+  </section>
+
+  <!-- ── QUICK START ─────────────────────────────────── -->
+  <section>
+    <h2>Quick Start</h2>
+    <h3>Run from source</h3>
+    <pre data-lang="bash"><code><span class="cm"># Clone the repo</span>
+git clone https://github.com/anubhav-1207/project-arc
+cd project-arc
+
+<span class="cm"># Run the REPL</span>
+python san.py
+
+<span class="cm"># Run a .san file</span>
+python san.py hello.san</code></pre>
+
+    <h3>Hello, World</h3>
+    <pre data-lang="san"><code><span class="fn">print</span>(<span class="str">"Hello, World!"</span>)</code></pre>
+
+    <h3>A taste of San</h3>
+    <pre data-lang="san"><code><span class="cm">// Variables and arithmetic</span>
+<span class="kw">let</span> x <span class="op">=</span> <span class="num">10</span>
+<span class="kw">let</span> y <span class="op">=</span> <span class="num">20</span>
+<span class="fn">print</span>(x <span class="op">+</span> y)       <span class="cm">// 30</span>
+
+<span class="cm">// Functions</span>
+<span class="kw">fn</span> <span class="fn">greet</span>(name) {
+  <span class="kw">return</span> <span class="str">"Hello, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="str">"!"</span>
+}
+
+<span class="fn">print</span>(<span class="fn">greet</span>(<span class="str">"San"</span>))  <span class="cm">// Hello, San!</span>
+
+<span class="cm">// Fibonacci — recursive</span>
+<span class="kw">fn</span> <span class="fn">fib</span>(n) {
+  <span class="kw">if</span> n <span class="op">&lt;=</span> <span class="num">1</span> { <span class="kw">return</span> n }
+  <span class="kw">return</span> <span class="fn">fib</span>(n <span class="op">-</span> <span class="num">1</span>) <span class="op">+</span> <span class="fn">fib</span>(n <span class="op">-</span> <span class="num">2</span>)
+}
+
+<span class="fn">print</span>(<span class="fn">fib</span>(<span class="num">10</span>))        <span class="cm">// 55</span></code></pre>
+  </section>
+
+  <!-- ── FEATURES ───────────────────────────────────── -->
+  <section>
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🔤</div>
+        <h4>Handwritten Lexer</h4>
+        <p>A clean tokenizer that handles keywords, literals, operators, and identifiers with precise error reporting.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🌲</div>
+        <h4>Recursive Descent Parser</h4>
+        <p>Fully hand-written parser producing a typed AST — no parser generators, no magic.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h4>Tree-Walking Evaluator</h4>
+        <p>Direct AST interpretation with proper scoping, closures, and environment chaining.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔁</div>
+        <h4>First-Class Functions</h4>
+        <p>Functions are values. Pass them around, return them, and close over their environment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧱</div>
+        <h4>Lexical Scoping</h4>
+        <p>Block-level scoping with nested environments — variable resolution follows the classic chain model.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛡️</div>
+        <h4>Runtime Error Handling</h4>
+        <p>Descriptive errors with line information so you know exactly where things went wrong.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LANGUAGE REFERENCE ─────────────────────────── -->
+  <section>
+    <h2>Language Reference</h2>
+
+    <h3>Types</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Example</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><code>Number</code></td><td><code>42</code>, <code>3.14</code></td><td>64-bit float internally</td></tr>
+        <tr><td><code>String</code></td><td><code>"hello"</code></td><td>Double-quoted, supports <code>+</code> concatenation</td></tr>
+        <tr><td><code>Boolean</code></td><td><code>true</code>, <code>false</code></td><td>Lowercase literals</td></tr>
+        <tr><td><code>Nil</code></td><td><code>nil</code></td><td>The absence of a value</td></tr>
+        <tr><td><code>Function</code></td><td><code>fn f(x) { ... }</code></td><td>First-class, closures supported</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Operators</h3>
+    <table>
+      <thead><tr><th>Category</th><th>Operators</th></tr></thead>
+      <tbody>
+        <tr><td>Arithmetic</td><td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></td></tr>
+        <tr><td>Comparison</td><td><code>==</code> <code>!=</code> <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></td></tr>
+        <tr><td>Logical</td><td><code>and</code> <code>or</code> <code>!</code></td></tr>
+        <tr><td>Assignment</td><td><code>=</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Control Flow</h3>
+    <pre data-lang="san"><code><span class="cm">// if / else if / else</span>
+<span class="kw">if</span> x <span class="op">&gt;</span> <span class="num">0</span> {
+  <span class="fn">print</span>(<span class="str">"positive"</span>)
+} <span class="kw">else if</span> x <span class="op">==</span> <span class="num">0</span> {
+  <span class="fn">print</span>(<span class="str">"zero"</span>)
+} <span class="kw">else</span> {
+  <span class="fn">print</span>(<span class="str">"negative"</span>)
+}
+
+<span class="cm">// while loop</span>
+<span class="kw">let</span> i <span class="op">=</span> <span class="num">0</span>
+<span class="kw">while</span> i <span class="op">&lt;</span> <span class="num">5</span> {
+  <span class="fn">print</span>(i)
+  i <span class="op">=</span> i <span class="op">+</span> <span class="num">1</span>
+}</code></pre>
+
+    <h3>Functions &amp; Closures</h3>
+    <pre data-lang="san"><code><span class="cm">// Defining a function</span>
+<span class="kw">fn</span> <span class="fn">add</span>(a, b) {
+  <span class="kw">return</span> a <span class="op">+</span> b
+}
+
+<span class="cm">// Closures</span>
+<span class="kw">fn</span> <span class="fn">counter</span>() {
+  <span class="kw">let</span> count <span class="op">=</span> <span class="num">0</span>
+  <span class="kw">fn</span> <span class="fn">increment</span>() {
+    count <span class="op">=</span> count <span class="op">+</span> <span class="num">1</span>
+    <span class="kw">return</span> count
+  }
+  <span class="kw">return</span> increment
+}
+
+<span class="kw">let</span> c <span class="op">=</span> <span class="fn">counter</span>()
+<span class="fn">print</span>(<span class="fn">c</span>())  <span class="cm">// 1</span>
+<span class="fn">print</span>(<span class="fn">c</span>())  <span class="cm">// 2</span></code></pre>
+  </section>
+
+  <!-- ── ARCHITECTURE ────────────────────────────────── -->
+  <section>
+    <h2>Architecture</h2>
+    <p>San is structured as a classic pipeline: each stage transforms the source into something the next stage can work with.</p>
+    <pre data-lang="text"><code>Source Text
+    │
+    ▼
+┌─────────┐
+│  Lexer  │  Tokenises raw characters into a flat stream of tokens
+└────┬────┘
+     │  Token Stream
+     ▼
+┌──────────┐
+│  Parser  │  Recursive-descent parser builds a typed AST
+└────┬─────┘
+     │  Abstract Syntax Tree
+     ▼
+┌─────────────┐
+│  Evaluator  │  Tree-walker interprets the AST with an Environment chain
+└─────────────┘
+     │
+     ▼
+  Output / Side Effects</code></pre>
+  </section>
+
+  <!-- ── ROADMAP ─────────────────────────────────────── -->
+  <section>
+    <h2>Roadmap</h2>
+    <ul>
+      <li>✅ Lexer — keywords, literals, operators, identifiers</li>
+      <li>✅ Recursive-descent parser with operator precedence</li>
+      <li>✅ Tree-walking evaluator</li>
+      <li>✅ Lexical scoping &amp; closures</li>
+      <li>✅ First-class functions</li>
+      <li>⬜ Native standard library (<code>len</code>, <code>type</code>, file I/O)</li>
+      <li>⬜ Arrays and hash maps</li>
+      <li>⬜ For-in loops</li>
+      <li>⬜ Classes / structs</li>
+      <li>⬜ Bytecode VM (long-term)</li>
+    </ul>
+  </section>
+
+  <!-- ── CONTRIBUTING ───────────────────────────────── -->
+  <section>
+    <h2>Contributing</h2>
+    <p>San is a learning project, but contributions, issues, and ideas are very welcome. If you spot a bug, want to suggest a feature, or want to implement something from the roadmap, open an issue or pull request on GitHub.</p>
+    <ol>
+      <li>Fork the repository</li>
+      <li>Create a feature branch: <code>git checkout -b feat/my-feature</code></li>
+      <li>Commit your changes: <code>git commit -m "feat: add arrays"</code></li>
+      <li>Push and open a Pull Request</li>
+    </ol>
+  </section>
+
+  <!-- ── LICENSE ────────────────────────────────────── -->
+  <section>
+    <h2>License</h2>
+    <p>San is released under the <strong>MIT License</strong>. See <code>LICENSE</code> for details.</p>
+  </section>
+
+</main>
+
+<footer>
+  &lt; San &gt; — built with curiosity, Python, and a tablet &nbsp;·&nbsp; github.com/anubhav-1207
+</footer>
+
+</body>
+</html>
