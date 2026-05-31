@@ -327,22 +327,17 @@
     
     </p>
     <div class="callout">
-      💡 San is the product of <strong>Project-Arc</strong> — a personal journey to understand how programming
-      languages actually work, built on an Android tablet using Pydroid, one commit at a time.
+      I used Termux to run a proot linux distro on my android, installed VSCode in it. It was a 5 year old low-end device, it struggled a lot, but somehow worked.
     </div>
   </section>
 
   <!-- ── QUICK START ─────────────────────────────────── -->
   <section>
     <h2>Quick Start</h2>
-    <h3>Run from source</h3>
+    <h3></h3>
     <pre data-lang="bash"><code><span class="cm"># Clone the repo</span>
-git clone https://github.com/anubhav-1207/project-arc
-cd project-arc
-
-<span class="cm"># Run the REPL</span>
-python san.py
-
+git clone https://github.com/anubhav-1207/san
+cd san
 <span class="cm"># Run a .san file</span>
 python san.py hello.san</code></pre>
 
@@ -351,12 +346,12 @@ python san.py hello.san</code></pre>
 
     <h3>A taste of San</h3>
     <pre data-lang="san"><code><span class="cm">// Variables and arithmetic</span>
-<span class="kw">let</span> x <span class="op">=</span> <span class="num">10</span>
-<span class="kw">let</span> y <span class="op">=</span> <span class="num">20</span>
-<span class="fn">print</span>(x <span class="op">+</span> y)       <span class="cm">// 30</span>
+<span class="kw">dec</span> x <span class="op">=</span> <span class="num">10</span>
+<span class="kw">const</span> y <span class="op">=</span> <span class="num">20</span>
+<span class="fn">stdout</span>(x <span class="op">+</span> y)       <span class="cm">// 30</span>
 
 <span class="cm">// Functions</span>
-<span class="kw">fn</span> <span class="fn">greet</span>(name) {
+<span class="kw">func</span> <span class="fn">greet</span>(name) {
   <span class="kw">return</span> <span class="str">"Hello, "</span> <span class="op">+</span> name <span class="op">+</span> <span class="str">"!"</span>
 }
 
